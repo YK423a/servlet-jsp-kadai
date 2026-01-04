@@ -21,7 +21,7 @@
 	</tr>
 	<tr>
 		<td>メールアドレス</td>
-		<td>${mail }</td>
+		<td>${email }</td>
 	</tr>
 	<tr>
 		<td>住所</td>
@@ -29,7 +29,7 @@
 	</tr>
 	<tr>
 		<td>電話番号</td>
-		<td>${tel }</td>
+		<td>${phone_number }</td>
 	</tr>
 </table>
 

@@ -23,14 +23,14 @@ public class FormSevlet extends HttpServlet {
 				case "name" : //お名前
 					request.setAttribute("name" , cookie.getValue());
 					break;
-				case "mail" : //メール
-					request.setAttribute("mail", cookie.getValue());
+				case "email" : //メール
+					request.setAttribute("email", cookie.getValue());
 					break;
 				case "address" : //住所
 					request.setAttribute("address", cookie.getValue());
 					break;
-				case "tel" : //電話番号
-					request.setAttribute("tel", cookie.getValue());
+				case "phone_number" : //電話番号
+					request.setAttribute("phone_number", cookie.getValue());
 					break;
 				default :
 					break;

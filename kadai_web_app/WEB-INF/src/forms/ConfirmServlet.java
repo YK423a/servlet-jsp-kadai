@@ -19,19 +19,19 @@ public class ConfirmServlet extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		//jspからのデータ取得
 		String name = request.getParameter("name");
-		String mail = request.getParameter("mail");
+		String email = request.getParameter("email");
 		String address = request.getParameter("address");
-		String tel = request.getParameter("tel");
+		String phone_number = request.getParameter("phone_number");
 		//リクエストスコープにデータ保存
 		request.setAttribute("name", name);
-		request.setAttribute("mail", mail);
+		request.setAttribute("email", email);
 		request.setAttribute("address", address);
-		request.setAttribute("tel", tel);
+		request.setAttribute("phone_number", phone_number);
 		//データが存在しない場合は空文字に置き換え
 		name = Objects.toString(name,"");
-		mail = Objects.toString(mail,"");
+		email = Objects.toString(email,"");
 		address = Objects.toString(address,"");
-		tel = Objects.toString(tel,"");
+		phone_number = Objects.toString(phone_number,"");
 		//バリデーションngの時のメッセージを格納するリスト
 		ArrayList<String> errorList = new ArrayList<String>();
 		//お名前のバリデーション
@@ -40,10 +40,10 @@ public class ConfirmServlet extends HttpServlet {
 			errorList.add("お名前を入力してください");
 		}
 		//メールアドレスのバリデーション
-		if("".equals(mail.trim())) {
+		if("".equals(email.trim())) {
 			//未入力の場合
 			errorList.add("メールアドレスを入力してください");
-		} else if(!mail.matches("^[a-zA-Z0-9.]+@[a-zA-Z0-9.]+$")) {
+		} else if(!email.matches("^[a-zA-Z0-9.]+@[a-zA-Z0-9.]+$")) {
 			errorList.add("メールアドレスの形式が正しくありません");
 		}
 		//住所のバリデーション
@@ -52,22 +52,20 @@ public class ConfirmServlet extends HttpServlet {
 			errorList.add("住所を入力してください");
 		}
 		
-		System.out.println("元の入力値: [" + tel + "]");
-		tel = tel.trim()
+		System.out.println("元の入力値: [" + phone_number + "]");
+		phone_number = phone_number.trim()
 		    .replaceAll("ー", "-")
 		    .replaceAll("−", "-")
 		    .replaceAll("‐", "-")
 		    .replaceAll("－", "-");
-		System.out.println("クリーニング後の値: [" + tel + "]");
-
-		
+		System.out.println("クリーニング後の値: [" + phone_number + "]");		
 		
 //		電話番号のバリデーション
-		if("".equals(tel)) {
+		if("".equals(phone_number)) {
 			//未入力の場合
 			errorList.add("電話番号を入力してください");
 		}
-		else if(!tel.matches("^0\\d{1,4}-\\d{1,4}-\\d{4}$")) {
+		else if(!phone_number.matches("^0\\d{1,4}-\\d{1,4}-\\d{4}$")) {
 		    errorList.add("電話番号が正しくありません");
 		}
 		System.out.println("電話番号のチェック完了");
@@ -80,9 +78,9 @@ public class ConfirmServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			//セッションへのデータ登録
 			session.setAttribute("name",name);
-			session.setAttribute("mail", session);
+			session.setAttribute("email", session);
 			session.setAttribute("address", address);
-			session.setAttribute("tel", tel);
+			session.setAttribute("phone_number", phone_number);
 			//クッキーに保存
 //			setCookie(response,"name",name);
 //			setCookie(response,"mail",mail);
